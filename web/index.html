@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>DartPad Image Display</title>
+  <style>
+    /* Styles for the body to center content vertically and horizontally */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 50vh; /* Full viewport height */
+      margin: 0; /* Remove default margin */
+      background-color: #f0f0f0; /* Light grey background */
+    }
+
+    /* Container for the image that will be displayed */
+    #image-container {
+      display: none; /* Initially hidden */
+      margin: 20px; /* Margin around the container */
+      position: relative; /* Positioning context for absolute elements inside */
+    }
+
+    /* Styles for the context menu that appears on button click */
+    #context-menu {
+      position: absolute; /* Positioned relative to the nearest positioned ancestor */
+      bottom: 80px; /* Distance from the bottom of the viewport */
+      right: 20px; /* Distance from the right of the viewport */
+      background-color: white; /* White background for the menu */
+      border: 1px solid #ccc; /* Light grey border */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+      display: none; /* Initially hidden */
+    }
+
+    /* Styles for buttons inside the context menu */
+    #context-menu button {
+      width: 100%; /* Full width of the menu */
+      border: none; /* Remove default button border */
+      background: none; /* Remove default button background */
+      padding: 10px; /* Padding for button spacing */
+      cursor: pointer; /* Pointer cursor on hover */
+    }
+
+    /* Hover effect for context menu buttons */
+    #context-menu button:hover {
+      background-color: #f0f0f0; /* Light grey background on hover */
+    }
+
+    /* Styles for the plus button that opens the context menu */
+    #plusButton {
+      position: absolute; /* Positioned relative to the body */
+      bottom: 20px; /* Distance from the bottom of the viewport */
+      right: 20px; /* Distance from the right of the viewport */
+      padding: 10px 20px; /* Padding for button spacing */
+      font-size: 20px; /* Font size for the button */
+      cursor: pointer; /* Pointer cursor on hover */
+    }
+
+    /* Add margin for spacing between elements */
+    #urlInput {
+      margin-bottom: 10px; /* Space below the input field */
+    }
+
+    #loadImageBtn {
+      margin-top: 10px; /* Space above the load image button */
+    }
+
+    /* Ensure the image maintains its normal size */
+    #displayedImage {
+      max-width: none; /* Allow the image to be its natural width */
+      height: auto; /* Maintain aspect ratio */
+    }
+  </style>
+  <script>
+    /**
+     * Toggles fullscreen mode for the document.
+     * If the document is not in fullscreen, it requests fullscreen.
+     * If it is already in fullscreen, it exits fullscreen mode.
+     */
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen(); // Request fullscreen
+      } else {
+        document.exitFullscreen(); // Exit fullscreen
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Input field for entering the image URL -->
+  <input type="text" id="urlInput" placeholder="Enter image URL" />
+  
+  <!-- Button to load the image from the entered URL -->
+  <button id="loadImageBtn">Load Image</button>
+  
+  <!-- Container for displaying the loaded image -->
+  <div id="image-container">
+    <img id="displayedImage" src="" alt="Loaded Image" />
+  </div>
+  
+  <!-- Button to toggle the context menu for fullscreen options -->
+  <button id="plusButton">+</button>
+  
+  <!-- Context menu for entering and exiting fullscreen -->
+  <div id="context-menu">
+    <button id="enterFullscreenBtn">Enter fullscreen</button>
+    <button id="exitFullscreenBtn">Exit fullscreen</button>
+  </div>
+
+  <!-- Link to the compiled Dart script -->
+  <script src="main.dart.js"></script>
+</body>
+</html>
